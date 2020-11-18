@@ -1,13 +1,8 @@
-from .project import Project
-from .argparser import arg_parser
-
-
-def main():
-    options, args = arg_parser()
-    project_dir = args[0]
-    proj = Project(options.name, project_dir)
-    proj.create(options.force)
+from .eprint import eprint
 
 
 if __name__ == "__main__":
-    main()
+    eprint("Looks cool?")
+    eprint.ok("Success")
+    eprint.error("Failed")
+    eprint.ok("Use color for {} that need {} ", "values", "attention")

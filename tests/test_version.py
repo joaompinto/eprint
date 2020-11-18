@@ -1,5 +1,5 @@
-from setuptools_scm import get_version
+from eprint.version import version
 
 
 def test_version():
-    assert get_version()
+    assert version
