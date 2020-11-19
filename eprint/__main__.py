@@ -1,4 +1,4 @@
-from .eprint import eprint
+from eprint import eprint
 
 
 if __name__ == "__main__":
