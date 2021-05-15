@@ -1,5 +1,6 @@
 from colored import fg, attr
 from enum import Enum, auto
+from functools import partialmethod
 
 RESET = attr('reset')
 
@@ -8,12 +9,14 @@ class MsgClass(Enum):
     PLAIN = auto()
     OK = auto()
     ERROR = auto()
+    INFO = auto()
 
 
 COLOR_MAP = {
     MsgClass.PLAIN : fg("white"),
     MsgClass.OK : fg("green"),
-    MsgClass.ERROR : fg("red")
+    MsgClass.ERROR : fg("red"),
+    MsgClass.INFO : fg("cyan")
 }
 
 
@@ -32,10 +35,6 @@ class eprint:
             msg = args[0].format(*colored_args)
         print(msg)
 
-    @staticmethod
-    def ok(*args, **kwargs):
-        eprint.raw(MsgClass.OK, *args, **kwargs)
-
-    @staticmethod
-    def error(*args, **kwargs):
-        eprint.raw(MsgClass.ERROR, *args, **kwargs)
+    error = partialmethod(raw, MsgClass.ERROR)
+    info = partialmethod(raw, MsgClass.INFO)
+    ok = partialmethod(raw, MsgClass.OK)
